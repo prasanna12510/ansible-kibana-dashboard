@@ -1,0 +1,15 @@
+- name: Add log visualizations to Kibana
+  uri:
+    url: "{{ elasticsearch.url }}/.kibana/_doc/visualization:{{ item }}"
+    method: POST
+    body: "{{ lookup('template','../templates/visualization/{{ item }}.json') }}"
+    body_format: json
+    status_code: 201,200
+    validate_certs: no
+  with_items:
+    - container_logs
+    - containers
+    - error-logs
+    - errors
+  register: response
+  changed_when: response.status == 201

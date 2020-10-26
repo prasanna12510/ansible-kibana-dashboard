@@ -1,0 +1,12 @@
+- name: Add dashboards to Kibana
+  uri:
+    url: "{{ elasticsearch.url }}/.kibana/_doc/dashboard:{{ item }}"
+    method: POST
+    body: "{{ lookup('template','../templates/dashboard/{{item}}.json') }}"
+    body_format: json
+    status_code: 201,200
+    validate_certs: no
+  with_items:
+   - fluentd-logs
+  register: response
+  changed_when: response.status == 201

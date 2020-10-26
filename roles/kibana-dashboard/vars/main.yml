@@ -1,0 +1,5 @@
+elasticsearch:
+  url: http://10.231.16.248:21739
+
+kibana:
+  url: http://10.231.24.226:19781

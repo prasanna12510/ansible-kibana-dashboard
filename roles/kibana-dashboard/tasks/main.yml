@@ -1,0 +1,8 @@
+- include: search.yml
+  tags: fluentd
+
+- include: visualization.yml
+  tags: fluentd
+
+- include: dashboard.yml
+  tags: fluentd
